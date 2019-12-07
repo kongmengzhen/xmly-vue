@@ -1,6 +1,5 @@
 <template>
-  <div id="main">
-    
+  <div id="main">    
     <div class="tomatos">
       <Tomatos :pathnm="pathname"></Tomatos>
     </div>
@@ -13,7 +12,7 @@
     </a>
 
     <div class="album-wrap" v-for="(moduleRankData,i) in moduleRankDatas" :key="i">
-      <div class="album-title">{{moduleRankData.moduleInfo.displayName}}</div>
+      <div class="album-title" v-if="moduleRankData.albumBriefDetailInfos.length > 0">{{moduleRankData.moduleInfo.displayName}}</div>
 
       <div class="album-hor">
         <Horitem
@@ -77,6 +76,7 @@ export default {
         this.pathname
     });
     this.moduleRankDatas = result.data.moduleContent.moduleRankDatas;   
+    this.$emit('handlecmp',this.moduleRankDatas)
   },
 
   components: {

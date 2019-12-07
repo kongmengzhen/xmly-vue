@@ -3,20 +3,21 @@
     <a>
       <router-link :to="'/youshengshu/'+detail.albumInfo.id+'/'" class="col">
         <div class="col-album-cover">
-          <img class="cover-image" :src="'https://imagev2.xmcdn.com/'+detail.albumInfo.cover">
+          <img class="cover-image" :src="detail.albumInfo.cover_path">
         </div>
         <div class="col-content">
           <h3 class="col-album__title">{{detail.albumInfo.title}}</h3>
-          <p class="col-album__subtitle ellipsis-2">{{detail.albumInfo.shortIntro}}</p>
-          <div>
-            
+          <p                     
+          class="col-album__subtitle ellipsis-2">
+          {{detail.albumInfo.recommend_reason?detail.albumInfo.recommend_reason:detail.albumInfo.intro}}
+          </p>
+          <div>            
             <span>
-              <i></i>
-              {{detail.statCountInfo.trackCount}}
+              <i></i>              
             </span>
             <span>
               <i></i>
-              {{playCount}}
+              <!-- {{playCount}} -->
             </span>
           </div>
         </div>
@@ -53,18 +54,17 @@
 </script>
 
 <style lang='stylus' scoped>
-.col
-  margin 0 15px
+.col 
   color #000
   display flex
   padding: 15px 10px 15px 0;
   .col-album-cover
-    width 94px
-    height 94px    
+    width 70px
+    height 70px    
     margin-right 15px
     img 
-      width 94px
-      height 94px
+      width 70px
+      height 70px
       border-radius 4px
   .col-content
     h3

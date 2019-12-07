@@ -1,8 +1,7 @@
 <template>
-  <div id="main">
-    <Swiper :pathnm="pathname" :type="pathname"></Swiper>
+  <div id="main">  
     <div class="tomatos">
-      <Tomatos :pathnm="pathname"></Tomatos>
+      <Tomatos pathnm="tuijian"></Tomatos>
     </div>
     <a class="ad">
       <img
@@ -13,15 +12,7 @@
     </a>
 
     <div class="album-wrap" v-for="(moduleRankData,i) in moduleRankDatas" :key="i">
-      <div class="album-title">{{moduleRankData.moduleInfo.displayName}}</div>
-
-      <div class="album-hor">
-        <Horitem
-          v-for="albumBriefDetailInfo in moduleRankData.albumBriefDetailInfos.slice(0,3)"
-          :key="albumBriefDetailInfo.id"
-          :detail="albumBriefDetailInfo"
-        ></Horitem>
-      </div>
+      
       <div class="album-ver">
         <Colitem
           v-for="albumBriefDetailInfo in moduleRankData.albumBriefDetailInfos.slice(3)"
@@ -61,23 +52,32 @@ import Morerecom from "components/index/Morerecom";
 import { get } from "untils/http.js";
 export default {
   props:['moreList'],
+  methods: {
+    handle(val){
+      console.log(val)
+       this.$store.commit({
+        type: 'handleDetailArr',
+        payload: val
+      })
+    }
+  },
   data() {
     return {
       pathname: this.$route.name,
       moduleRankDatas: [],
-      morerecom:[]
+      morerecom:[]     
     };
   },
-  async mounted() {
-    
-    // console.log(this.pathname)
+  async mounted() {     
+   
     let result = await get({
       url:
         "https://m.ximalaya.com/m-revision/page/index/queryIndexCategoryTabContent?moduleKey=" +
         this.pathname
     });
     this.moduleRankDatas = result.data.moduleContent.moduleRankDatas;  
-     this.$emit('handlecmp',this.moduleRankDatas) 
+    // console.log(this.moduleRankDatas) 
+     this.$emit('handlecmp',this.moduleRankDatas)  
   },
 
   components: {

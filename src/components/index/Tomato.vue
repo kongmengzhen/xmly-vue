@@ -1,6 +1,7 @@
 <template>
   <div id="cate-wrap">
-    <routerLink :to="tomato.link" v-for="tomato in tomatoeslist" :key="tomato.order">
+    <!--  :to="tomato.link" -->
+    <routerLink to="/categroy" v-for="tomato in tomatoeslist" :key="tomato.order">
       <div>
         <img :src="tomato.img" alt />
       </div>
@@ -23,17 +24,18 @@ export default {
   watch: {
     $route: {
       handler: async function(val, oldVal) {
-        // console.log(val.name);
+        console.log(val.name);
         let result = await get({
        url:
         "https://m.ximalaya.com/m-revision/page/index/queryIndexCategoryTabContent?moduleKey=" +val.name        
        });
-    this.tomatoeslist = result.data.moduleContent.tomatoes;
+        this.tomatoeslist = result.data.moduleContent.tomatoes;
       },      
       deep: true
     }
   },
     async mounted() {
+   
       let result = await get({
         url:
           "https://m.ximalaya.com/m-revision/page/index/queryIndexCategoryTabContent?moduleKey=" +

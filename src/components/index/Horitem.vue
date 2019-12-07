@@ -1,6 +1,6 @@
 <template>
-  <div id='wrap'>  
-      <a class="album-container">
+  <div id='wrap' data-id='detail.albumInfo.id' @click="handleClick">  
+      <router-link :to="'/youshengshu/'+detail.albumInfo.id+'/'" class="album-container">
       <div class="album-cover">
         <img class="img-cover" :src="'https://imagev2.xmcdn.com/'+detail.albumInfo.cover" alt="">
         <div class="album-cover-panel">
@@ -13,14 +13,19 @@
         <p class="ellipsis-2">{{detail.albumInfo.title}}</p>
       </div>
 
-    </a>
+    </router-link >
     </div> 
 </template>
 
 <script>
   export default{
     props:['detail'],
-   
+    methods: {
+     handleClick(){      
+       this.$emit('details',this.detail.albumInfo)
+    
+     }
+    },
   
   }
 </script>
@@ -28,7 +33,7 @@
 <style lang='stylus' scoped>
 #wrap
   margin 0 3px
-  width 100%
+  width 30%
   height 100%
 .album-cover
   position relative

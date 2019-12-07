@@ -10,7 +10,7 @@ html,
 body {
     overflow: hidden;
     height: 100%;
-     background:#fff;
+     /* background:#fff; */
 }
 
 ::-webkit-scrollbar {
@@ -29,7 +29,7 @@ body {
     margin: 0;
     font-size: 0.14em;
     line-height: 1.5;
-    font-family: PingFangSC-Regular, Hiragino Sans GB, sans-serif
+    font-family: PingFangSC-Medium;
 }
 
 ul,
@@ -251,8 +251,10 @@ a {
 }
 @font-face {
   font-family: 'yofont'; 
-  src:  
-    url('//at.alicdn.com/t/font_1508223_6gnbovxsef.woff') format('woff'),
-    url('//at.alicdn.com/t/font_1508223_6gnbovxsef.ttf') format('truetype'),
-    url('//at.alicdn.com/t/font_1508223_6gnbovxsef.svg#iconfont') format('svg');
+      src: url('//at.alicdn.com/t/font_1508223_jpqvzp4iz8.eot');
+      src: url('//at.alicdn.com/t/font_1508223_jpqvzp4iz8.eot?#iefix') format('embedded-opentype'),
+      url('//at.alicdn.com/t/font_1508223_jpqvzp4iz8.woff2') format('woff2'),
+      url('//at.alicdn.com/t/font_1508223_jpqvzp4iz8.woff') format('woff'),
+      url('//at.alicdn.com/t/font_1508223_jpqvzp4iz8.ttf') format('truetype'),
+      url('//at.alicdn.com/t/font_1508223_jpqvzp4iz8.svg#iconfont') format('svg');
 }

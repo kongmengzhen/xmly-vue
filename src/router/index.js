@@ -1,10 +1,16 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Index from 'pages/Index.vue'
-import Youshengshu from 'pages/Youshengshu.vue'
-import Xiangsheng from 'pages/Xiangsheng.vue'
-import Ertong from 'pages/Ertong.vue'
-import Yinyue from 'pages/Yinyue.vue'
+import Index from 'pages/Classify/Index.vue'
+import Youshengshu from 'pages/Classify/Youshengshu.vue'
+import Xiangsheng from 'pages/Classify/Xiangsheng.vue'
+import Ertong from 'pages/Classify/Ertong.vue'
+import Yinyue from 'pages/Classify/Yinyue.vue'
+import Detail from 'pages/Detail.vue'
+import Categroy from 'pages/Categroy.vue'
+import Tuijian from 'pages/Tuijian.vue'
+import Search from 'pages/Search.vue'
+import SearchList from 'pages/SearchList.vue'
+import AudioPlay from 'pages/AudioPlay.vue'
 
 import YoushengshuList from 'components/youshengshu/YoushengshuList.vue'
 import DushiList from 'components/youshengshu/DushiList.vue'
@@ -13,17 +19,27 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    component: Index
+    redirect: to => {
+      return "/home/tuijian"
+    }
   },
+ 
   {
     path: '/home',
     name: 'index',
     component: Index,
     children: [
+     /*  {
+        path: 'tuijian',
+        redirect: to=>{
+          return "/"
+        }
+    
+      }, */
       {
-        path: '/tuijian',
-        name: '/tuijian',
-        component: Index
+        path: 'tuijian',
+        name: 'youshengshu',
+        component: Tuijian
       },
       {
         path: 'youshengshu',
@@ -71,17 +87,48 @@ const routes = [
     path: '/youshengshu',
     name: '/youshengshu',
     component: YoushengshuList,
-    children: [
+    children: [      
       {
         path: 'yanqing',
         component: YoushengshuList,
       },
-      {
-        path: 'dushi',
-        component: DushiList,
-      }
+      
     ]
-  }
+  },
+  {
+    path: '/youshengshu/:id',
+    name: 'detail',
+    component: Detail,    
+    props:true  
+  },
+  {
+    path: '/youshengshu/:id/:audio',
+    name: 'audioplay',
+    component: AudioPlay,
+    
+  },
+  {
+    path: '/categroy/', 
+    name: '/categroy',
+    component: Categroy,
+    props: true
+  },
+  {
+    path: '/search',
+    name: 'search',
+    component: Search,
+    props: true    
+  },
+  {
+    path: '/search/:id',   
+    component: SearchList,
+    props: true    
+  },
+ /*  {
+    path: '/search/:id/:id',
+    component: SearchList,
+    props: true
+  } */
 ]
 
 const router = new VueRouter({
